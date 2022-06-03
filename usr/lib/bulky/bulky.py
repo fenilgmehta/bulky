@@ -570,7 +570,9 @@ class MainWindow():
             try:
                 file_obj = self.model.get_value(iter, COL_FILE)
                 orig_name = self.model.get_value(iter, COL_NAME)
-                name, ext = os.path.splitext(orig_name)
+                ext = ''
+                if not file_obj.is_a_dir():
+                    name, ext = os.path.splitext(orig_name)
                 if ext and ext.startswith('.'):
                     ext = ext[1:]
                 if self.scope == SCOPE_NAME_ONLY:
